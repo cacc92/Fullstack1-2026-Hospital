@@ -1,6 +1,7 @@
 package com.hospitalVM.atenciones.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -46,6 +47,11 @@ public class Paciente {
     @NotNull(message = "El campo de fecha nacimiento no puede ser vacio")
     @Column(nullable = false)
     private LocalDate fechaNacimiento;
+
+    @Email(message = "El correo tiene que tener formato de correo")
+    @NotBlank(message = "El correo no puede ser vacio")
+    @Column(nullable = false, unique = true)
+    private String correo;
 
     @Embedded
     Audit audit = new Audit();
