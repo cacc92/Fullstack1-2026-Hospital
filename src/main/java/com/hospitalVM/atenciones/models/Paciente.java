@@ -45,7 +45,7 @@ public class Paciente {
     private String apellidos;
 
     @NotNull(message = "El campo de fecha nacimiento no puede ser vacio")
-    @Column(nullable = false)
+    @Column(nullable = false, name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
 
     @Email(message = "El correo tiene que tener formato de correo")
