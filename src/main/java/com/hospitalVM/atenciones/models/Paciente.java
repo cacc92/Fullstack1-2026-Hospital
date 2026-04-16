@@ -28,8 +28,8 @@ public class Paciente {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_paciente")
-    private Long idPaciente;
+    @Column(name = "paciente_id")
+    private Long pacienteId;
 
     @NotBlank(message = "El campo rut no puede ser vacio")
     @Pattern(regexp = "\\d{1,8}-[\\dKk]", message = "El formato del rut tiene que ser XXXXXXXX-X")
