@@ -27,14 +27,14 @@ public class ApiExceptionController {
     @ExceptionHandler(MedicoException.class)
     public ResponseEntity<?> handleMedicoException(MedicoException ex){
         HashMap<String, String> errors = new HashMap<>();
-        errors.put(ex.getMessage(), ex.getMessage());
+        errors.put("Error Medico", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
     }
 
     @ExceptionHandler(PacienteException.class)
     public ResponseEntity<?> handlePacienteException(PacienteException ex){
         HashMap<String, String> errors = new HashMap<>();
-        errors.put(ex.getMessage(), ex.getMessage());
+        errors.put("Error Paciente", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errors);
     }
 

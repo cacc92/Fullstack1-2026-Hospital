@@ -1,5 +1,6 @@
 package com.hospitalVM.atenciones.services;
 
+import com.hospitalVM.atenciones.exceptions.PacienteException;
 import com.hospitalVM.atenciones.models.Paciente;
 import com.hospitalVM.atenciones.repositories.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,9 @@ public class PacienteServiceImpl implements PacienteService {
 
     @Override
     public Paciente findById(Long id) {
-        return null;
+        return this.pacienteRepository.findById(id).orElseThrow(
+                () -> new PacienteException("Paciente con id "+id+" no encontrado")
+        );
     }
 
     @Override
