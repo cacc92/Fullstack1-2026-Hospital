@@ -1,5 +1,6 @@
 package com.hospitalVM.atenciones.services;
 
+import com.hospitalVM.atenciones.exceptions.AtencionException;
 import com.hospitalVM.atenciones.exceptions.MedicoException;
 import com.hospitalVM.atenciones.exceptions.PacienteException;
 import com.hospitalVM.atenciones.models.Atencion;
@@ -34,10 +35,9 @@ public class AtencionServiceImpl implements AtencionService {
     @Override
     public Atencion findById(Long id) {
         return this.atencionRespository.findById(id).orElseThrow(
-
+                () -> new AtencionException("Atencion con id: "+id+" no encontrado")
         );
     }
-
 
     @Override
     public Atencion save(AtencionCreacionDTO atencion) {

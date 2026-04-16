@@ -1,5 +1,6 @@
 package com.hospitalVM.atenciones.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +9,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "medicos")
@@ -37,4 +41,8 @@ public class Medico {
 
     @Embedded
     private Audit audit = new Audit();
+
+    @JsonManagedReference("medico-paciente")
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Atencion> atenciones = new ArrayList<>();
 }

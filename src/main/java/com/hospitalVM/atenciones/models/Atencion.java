@@ -1,5 +1,7 @@
 package com.hospitalVM.atenciones.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -32,11 +34,13 @@ public class Atencion {
     private String comentario;
 
     @NotNull(message = "El campo medico no puede ser vacio")
+    @JsonBackReference("medico-paciente")
     @ManyToOne
     @JoinColumn(name="medico_id", nullable = false)
     private Medico medico;
 
     @NotNull(message = "El campo paciente no puede ser vacio")
+    @JsonBackReference("paciente-medico")
     @ManyToOne
     @JoinColumn(name="paciente_id", nullable = false)
     private Paciente paciente;
