@@ -45,6 +45,7 @@ public class PacienteServiceImpl implements PacienteService {
         );
     }
 
+    @Transactional
     @Override
     public Paciente save(Paciente paciente) {
         if(this.findByCorreo(paciente.getCorreo()) != null){
@@ -56,11 +57,13 @@ public class PacienteServiceImpl implements PacienteService {
         return this.pacienteRepository.save(paciente);
     }
 
+    @Transactional
     @Override
     public void deleteById(Long id) {
         this.pacienteRepository.deleteById(id);
     }
 
+    @Transactional
     @Override
     public Paciente updateById(Long id, Paciente paciente) {
         return this.pacienteRepository.findById(id).map(element-> {
