@@ -32,5 +32,6 @@ public class Atencion {
 
     private String comentario;
 
+    @Embedded
     Audit audit =  new Audit();
 }
