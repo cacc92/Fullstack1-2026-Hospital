@@ -1,5 +1,6 @@
 package com.hospitalVM.atenciones.services;
 
+import com.hospitalVM.atenciones.models.Atencion;
 import com.hospitalVM.atenciones.models.Medico;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface MedicoService {
     Medico save(Medico medico);
     void deleteById(Long id);
     Medico updateById(Long id, Medico medico);
+    List<Atencion> findAtencionByMedico(Long id);
 }

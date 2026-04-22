@@ -48,10 +48,10 @@ public class PacienteServiceImpl implements PacienteService {
     @Transactional
     @Override
     public Paciente save(Paciente paciente) {
-        if(this.findByCorreo(paciente.getCorreo()) != null){
+        if(this.pacienteRepository.findByCorreo(paciente.getCorreo()).isPresent()){
             throw new PacienteException("Paciente ya existe");
         }
-        if(this.findByRut(paciente.getRut()) != null){
+        if(this.pacienteRepository.findByRut(paciente.getRut()).isPresent()){
             throw new PacienteException("Paciente ya existe");
         }
         return this.pacienteRepository.save(paciente);

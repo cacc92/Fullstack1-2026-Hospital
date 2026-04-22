@@ -1,5 +1,7 @@
 package com.hospitalVM.atenciones.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -34,4 +36,18 @@ public class Atencion {
 
     @Embedded
     Audit audit =  new Audit();
+
+
+    @JsonBackReference("medico-atencion")
+    @NotNull(message = "El campo medico no puede ser vacio")
+    @ManyToOne
+    @JoinColumn(name="medico_id", nullable = false)
+    private Medico medico;
+
+    @JsonBackReference("paciente-atencion")
+    @NotNull(message = "El campo paciente no puede ser vacio")
+    @ManyToOne
+    @JoinColumn(name="paciente_id", nullable = false)
+    private Paciente paciente;
+
 }

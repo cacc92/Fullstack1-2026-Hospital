@@ -1,6 +1,7 @@
 package com.hospitalVM.atenciones.controllers;
 
 import com.hospitalVM.atenciones.models.Atencion;
+import com.hospitalVM.atenciones.models.dtos.AtencionCreacionDTO;
 import com.hospitalVM.atenciones.services.AtencionService;
 import jakarta.validation.Valid;
 import lombok.Getter;
@@ -35,7 +36,7 @@ public class AtencionController {
     }
 
     @PostMapping
-    public ResponseEntity<Atencion> save(@Valid @RequestBody Atencion atencion){
+    public ResponseEntity<Atencion> save(@Valid @RequestBody AtencionCreacionDTO atencion){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(atencionService.save(atencion));

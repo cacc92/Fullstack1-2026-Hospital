@@ -2,6 +2,7 @@ package com.hospitalVM.atenciones.services;
 
 import com.hospitalVM.atenciones.exceptions.MedicoExistenteException;
 import com.hospitalVM.atenciones.exceptions.MedicoInexistenteException;
+import com.hospitalVM.atenciones.models.Atencion;
 import com.hospitalVM.atenciones.models.Medico;
 import com.hospitalVM.atenciones.repositories.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +64,13 @@ public class MedicoServiceImpl implements MedicoService {
         }).orElseThrow(
                 () -> new MedicoInexistenteException("El medico con id: "+id+" no existe")
         );
+    }
+
+    @Override
+    public List<Atencion> findAtencionByMedico(Long id) {
+        Medico medico =  this.medicoRepository.findById(id).orElseThrow(
+                () ->  new MedicoInexistenteException("Medico con id: "+id+" no existe")
+        );
+        return medico.getAtenciones();
     }
 }
